@@ -2,14 +2,17 @@ from flask import Blueprint, jsonify, request,current_app
 import pandas as pd
 import os
 cleaning_blueprint= Blueprint("cleaning",__name__)
-
+import requests
+from utils import getToken
 @cleaning_blueprint.route("/upload-csv",methods=["POST"])
 def upload():
     if 'file' not in request.files:
         return jsonify({"error": "No file part in the request"}), 400
     
     file = request.files['file']
-    
+    token = getToken()
+    if(token==None):
+        return jsonify({"error": "Authorization token is missing or invalid"}), 401
     if file.filename == '':
         return jsonify({"error": "No file selected"}), 400
 
@@ -19,7 +22,11 @@ def upload():
 
         file_path = os.path.join(upload_folder, file.filename)
         file.save(file_path)
-
+        response = requests.post("http://127.0.0.1:3000/api/user/save-file",json={
+            "filesname" : file.filename
+        },headers={
+            "Authorization" : f"Bearer {token}"
+        })
         return jsonify({"message": "File uploaded and saved successfully", "file_path": file_path}), 200
 
     except Exception as e:
