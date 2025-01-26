@@ -1,9 +1,9 @@
 from flask import Flask
 
 from flask_cors import CORS
-from routes import cleaning
+from routes.cleaning import cleaning_blueprint
 app = Flask(__name__)
-app.register_blueprint(cleaning ,url_prefix ="/clean")
+app.register_blueprint(cleaning_blueprint ,url_prefix ="/clean")
 UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 CORS(app)
