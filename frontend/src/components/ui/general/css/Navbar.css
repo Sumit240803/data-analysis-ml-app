@@ -1,0 +1,19 @@
+.nav{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px white;
+    font-size: x-large;
+}
+
+.mid-nav{
+    display: flex;
+    gap: 70px;
+    cursor: pointer;
+}
+
+.mid-nav span:hover{
+    
+    transform: scale(1.2);
+    transition: ease-in-out 600ms;
+}

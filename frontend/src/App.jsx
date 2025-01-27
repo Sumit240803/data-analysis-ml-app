@@ -1,16 +1,12 @@
 
 import './App.css'
+import Navbar from './components/ui/general/Navbar'
 
 
 function App() {
   return (
     <>
-    <div className='landing-container'>
-
-    <div className='img-container'>
-      <img className='img' src="/Landing-Images/1.png" alt="" />
-    </div>
-    </div>
+    <Navbar/>
     </>
   )
 }
