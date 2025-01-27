@@ -1,10 +1,24 @@
-.img{
+.hero {
+    background-image: url("/Landing-Images/1.png");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    filter: brightness(0.4) contrast(1.5);
+  }
+  
+  .heading {
+    position: absolute; /* Position the heading on top of the image */
+    top: 20%; /* Adjust this to control the vertical positioning of the heading */
+    width: 50%;
+    text-align: center;
+    color: white; /* Set the text color to white or whatever suits your design */
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: none; /* Removes any background from the heading */
     
-    width: 70%;
-    height: 70%;
-    margin: auto;
-    
-}
-.img-container{
-    margin: auto;
-}
+  }
+  
