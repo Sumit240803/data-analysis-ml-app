@@ -17,6 +17,11 @@
   
   .mid-nav span {
     transition: transform 0.3s ease;
+    
+  }
+  .nav-link{
+    text-decoration: none;
+    color: inherit;
   }
   
   .mid-nav span:hover {
