@@ -60,3 +60,79 @@
   background-color: rgba(77, 77, 255, 0.7); /* Darker on hover */
   transform: scale(1.05); /* Slight zoom effect */
 }
+.about {
+  padding: 60px 40px; /* Increased vertical padding */
+  background-color: #000000; /* Light background for contrast */
+}
+.about-us {
+  color: #7B7FFF;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.viz {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* Center items vertically */
+  margin-top: 40px; /* Increased margin for better spacing */
+  padding: 30px; /* Added padding for better spacing */
+  background-color: rgb(0, 0, 0); /* White background for each viz block */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(142, 29, 255, 0.725); /* Subtle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.viz:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 16px rgba(27, 73, 255, 0.755); /* Enhanced shadow on hover */
+}
+
+.viz img {
+  width: 30%; /* Slightly reduced width for better balance */
+  border-radius: 20px; /* Rounded corners for the image */
+  object-fit: cover; /* Ensure the image covers the area */
+  height: 250px; /* Fixed height for consistency */
+}
+
+.viz div {
+  width: 60%; /* Adjusted width for text content */
+}
+
+.viz h1 {
+  font-size: 3rem; /* Slightly reduced font size */
+  color: #7B7FFF; /* Darker color for better readability */
+  margin-bottom: 15px; /* Added margin below the heading */
+}
+
+.viz p {
+  width: 100%; /* Full width for better text flow */
+  font-size: 1.25rem; /* Slightly reduced font size */
+  color: #dddddd; /* Softer color for the paragraph */
+  line-height: 1.6; /* Improved line height for readability */
+}
+
+/* Alternate layout for even .viz blocks */
+.viz:nth-child(even) {
+  flex-direction: row-reverse; /* Reverse layout for even items */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .viz {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    text-align: center; /* Center-align text */
+  }
+
+  .viz img {
+    width: 80%; /* Larger image width on smaller screens */
+    margin-bottom: 20px; /* Added margin below the image */
+  }
+
+  .viz div {
+    width: 100%; /* Full width for text content */
+  }
+  .viz:nth-child(even) {
+    flex-direction: column; /* Ensure even items stack vertically */
+  }
+  
+}
