@@ -1,3 +1,4 @@
+/* Hero Section */
 .hero {
   position: relative;
   height: 90vh;
@@ -23,33 +24,33 @@
 
 .heading {
   position: relative; /* Ensure the text is above the pseudo-element */
-  width: 50%;
+  width: 90%; /* Adjusted for smaller screens */
   text-align: center;
   color: white;
-  font-size: 2.5rem;
+  font-size: 2rem; /* Reduced font size for smaller screens */
   font-weight: bold;
 }
 
 .info-row {
-  margin-top: 40px;
-  font-size: 1.5rem; /* Adjusted for better readability */
+  margin-top: 20px; /* Reduced margin for smaller screens */
+  font-size: 1.25rem; /* Adjusted for better readability */
   font-weight: 400; /* Lighter font weight */
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between rows */
+  gap: 15px; /* Reduced gap for smaller screens */
 }
 
 .info-row-1 {
   display: flex;
   justify-content: center;
-  gap: 15px; 
+  gap: 10px; /* Reduced gap for smaller screens */
   flex-wrap: wrap; 
 }
 
 .info-row-1 span {
-  padding: 10px 20px; 
-  border-radius: 24px;
+  padding: 8px 16px; /* Reduced padding for smaller screens */
+  border-radius: 20px; /* Slightly reduced border radius */
   background-color: rgba(77, 77, 255, 0.614);
   border: 1px solid rgba(255, 255, 255, 0.3); 
   transition: background-color 0.3s ease, transform 0.3s ease; 
@@ -60,22 +61,41 @@
   background-color: rgba(77, 77, 255, 0.7); /* Darker on hover */
   transform: scale(1.05); /* Slight zoom effect */
 }
+
+.getStarted {
+  padding: 15px 30px; /* Reduced padding for smaller screens */
+  border-radius: 20px; /* Slightly reduced border radius */
+  border: none;
+  font-weight: 200;
+  margin-top: 20px; /* Reduced margin for smaller screens */
+  background-color: #000000a0;
+  color: white;
+  font-size: 1.5rem; /* Reduced font size for smaller screens */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.getStarted:hover {
+  transform: scale(1.09);
+}
+
+/* About Section */
 .about {
-  padding: 60px 40px; /* Increased vertical padding */
+  padding: 40px 20px; /* Reduced padding for smaller screens */
   background-color: #000000; /* Light background for contrast */
 }
+
 .about-us {
   color: #7B7FFF;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem; /* Reduced font size for smaller screens */
 }
 
 .viz {
   display: flex;
   justify-content: space-around;
   align-items: center; /* Center items vertically */
-  margin-top: 40px; /* Increased margin for better spacing */
-  padding: 30px; /* Added padding for better spacing */
+  margin-top: 20px; /* Reduced margin for smaller screens */
+  padding: 20px; /* Reduced padding for smaller screens */
   background-color: rgb(0, 0, 0); /* White background for each viz block */
   border-radius: 20px; /* Rounded corners */
   box-shadow: 0 4px 12px rgba(142, 29, 255, 0.725); /* Subtle shadow for depth */
@@ -88,27 +108,27 @@
 }
 
 .viz img {
-  width: 30%; /* Slightly reduced width for better balance */
+  width: 40%; /* Adjusted width for smaller screens */
   border-radius: 20px; /* Rounded corners for the image */
   object-fit: cover; /* Ensure the image covers the area */
-  height: 250px; /* Fixed height for consistency */
+  height: 200px; /* Reduced height for smaller screens */
 }
 
 .viz div {
-  width: 60%; /* Adjusted width for text content */
+  width: 50%; /* Adjusted width for text content */
 }
 
 .viz h1 {
-  font-size: 3rem; /* Slightly reduced font size */
+  font-size: 2rem; /* Reduced font size for smaller screens */
   color: #7B7FFF; /* Darker color for better readability */
-  margin-bottom: 15px; /* Added margin below the heading */
+  margin-bottom: 10px; /* Reduced margin for smaller screens */
 }
 
 .viz p {
   width: 100%; /* Full width for better text flow */
-  font-size: 1.25rem; /* Slightly reduced font size */
+  font-size: 1rem; /* Reduced font size for smaller screens */
   color: #dddddd; /* Softer color for the paragraph */
-  line-height: 1.6; /* Improved line height for readability */
+  line-height: 1.5; /* Adjusted line height for smaller screens */
 }
 
 /* Alternate layout for even .viz blocks */
@@ -118,6 +138,30 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .hero {
+    height: 80vh; /* Reduced height for smaller screens */
+  }
+
+  .heading {
+    font-size: 1.5rem; /* Further reduced font size for smaller screens */
+  }
+
+  .info-row {
+    font-size: 1rem; /* Further reduced font size for smaller screens */
+  }
+
+  .info-row-1 span {
+    padding: 6px 12px; /* Further reduced padding for smaller screens */
+  }
+
+  .getStarted {
+    font-size: 1.25rem; /* Further reduced font size for smaller screens */
+  }
+
+  .about-us {
+    font-size: 2rem; /* Further reduced font size for smaller screens */
+  }
+
   .viz {
     flex-direction: column; /* Stack items vertically on smaller screens */
     text-align: center; /* Center-align text */
@@ -131,8 +175,8 @@
   .viz div {
     width: 100%; /* Full width for text content */
   }
+
   .viz:nth-child(even) {
     flex-direction: column; /* Ensure even items stack vertically */
   }
-  
 }

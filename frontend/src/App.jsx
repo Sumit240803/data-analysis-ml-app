@@ -63,6 +63,12 @@ function App() {
             
         </div>
       </div>
+      <div className='hero end-section'>
+        <div className='heading end-heading'>
+        <h1>Start Your Analysis Now</h1>
+        <button className='getStarted'>Get Started</button>
+        </div>
+      </div>
     </>
   )
 }

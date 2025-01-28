@@ -1,19 +1,67 @@
-.nav{
+.nav {
     display: flex;
     padding: 20px;
     justify-content: space-between;
+    align-items: center; /* Center items vertically */
     box-shadow: 1px 1px 1px white;
     font-size: x-large;
-}
-
-.mid-nav{
+    background-color: #000; /* Added background for better contrast */
+    color: white; /* Ensure text is visible */
+  }
+  
+  .mid-nav {
     display: flex;
-    gap: 70px;
+    gap: 40px; /* Reduced gap for smaller screens */
     cursor: pointer;
-}
-
-.mid-nav span:hover{
-    
-    transform: scale(1.2);
+  }
+  
+  .mid-nav span {
     transition: transform 0.3s ease;
-}
+  }
+  
+  .mid-nav span:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .nav {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      padding: 15px; /* Reduced padding for smaller screens */
+      font-size: large; /* Reduced font size for smaller screens */
+    }
+  
+    .mid-nav {
+      gap: 20px; /* Further reduced gap for smaller screens */
+      margin: 10px 0; /* Added margin for spacing */
+    }
+  
+    .mid-nav span {
+      font-size: 1rem; /* Reduced font size for smaller screens */
+    }
+  
+    .nav h3 {
+      font-size: 1.5rem; /* Reduced font size for smaller screens */
+      margin-bottom: 10px; /* Added margin for spacing */
+    }
+  
+    .nav div:last-child {
+      font-size: 1rem; /* Reduced font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mid-nav {
+      flex-direction: column; /* Stack nav items vertically on very small screens */
+      gap: 10px; /* Further reduced gap for very small screens */
+      text-align: center; /* Center-align text */
+    }
+  
+    .nav h3 {
+      font-size: 1.25rem; /* Further reduced font size for very small screens */
+    }
+  
+    .nav div:last-child {
+      font-size: 0.875rem; /* Further reduced font size for very small screens */
+    }
+  }
