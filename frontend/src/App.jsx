@@ -1,5 +1,6 @@
 
 import './App.css'
+import Footer from './components/ui/general/Footer'
 import Navbar from './components/ui/general/Navbar'
 
 
@@ -69,6 +70,7 @@ function App() {
         <button className='getStarted'>Get Started</button>
         </div>
       </div>
+      <Footer/>
     </>
   )
 }
