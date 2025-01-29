@@ -12,8 +12,8 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 app.use(express.json());
 app.use(
     cors({
-      origin: CLIENT_URL, // Set to your frontend URL
-      credentials: true,  // Allow credentials (cookies, authorization headers)
+      origin: CLIENT_URL,
+      credentials: true, 
     })
   );
 app.use(
@@ -50,8 +50,13 @@ app.get("/auth/user", (req, res) => {
 
 // Logout
 app.get("/auth/logout", (req, res) => {
-  req.session.destroy(() => {
+  req.session.destroy((err) => {
     res.redirect(CLIENT_URL);
+    if(err){
+      return res.status(500).send({ error: "Failed to log out" });
+    }
+    res.clearCookie("connect.sid");
+    res.send({ message: "Logged out successfully" });
   });
 });
 

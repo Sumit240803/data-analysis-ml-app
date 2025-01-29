@@ -4,12 +4,13 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    console.log(import.meta.env.VITE_BACKEND);
     const navigate = useNavigate();
 
     const handleSuccess = async (response) => {
         try {
             const { credential } = response;
-            const res = await axios.post(`${import.meta.env.VITE_BACKEND}/auth/google"`, {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND}/auth/google`, {
                 token: credential,
             }, { withCredentials: true });
 
