@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../components/ui/general/Navbar'
+import Footer from '../components/ui/general/Footer'
 
 const Home = () => {
   return (
     <div>
+      <Navbar/>
         <div className='hero'>
 
 <div className='heading'>
@@ -65,6 +68,7 @@ const Home = () => {
 <button className='getStarted'>Get Started</button>
 </div>
 </div>
+<Footer/>
     </div>
   )
 }

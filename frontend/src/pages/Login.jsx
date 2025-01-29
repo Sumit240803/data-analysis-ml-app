@@ -9,7 +9,7 @@ const Login = () => {
     const handleSuccess = async (response) => {
         try {
             const { credential } = response;
-            const res = await axios.post("http://localhost:5000/auth/google", {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND}/auth/google"`, {
                 token: credential,
             }, { withCredentials: true });
 
