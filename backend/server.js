@@ -1,48 +1,61 @@
-const express = require("express")
-const cors = require("cors")
-const userRoutes = require("../backend/routes/userRoutes");
-const GoogleStrategy  = require('passport-google-oauth20').Strategy
-const  session  = require("express-session");
-const passport = require("passport");
-require("dotenv").config()
+const express = require("express");
+const cors = require("cors");
+const session = require("express-session");
+require("dotenv").config();
+const { OAuth2Client } = require("google-auth-library");
 
-const app = express()
-const Google_Client_Id = process.env.CLIENT_ID
-const Google_Client_Secret = process.env.CLIENT_SECRET
+const app = express();
+const CLIENT_URL = "http://localhost:5173";
+const client = new OAuth2Client(process.env.CLIENT_ID);
+
+// Middleware
 app.use(express.json());
-app.use("api/user", userRoutes);
+app.use(
+    cors({
+      origin: CLIENT_URL, // Set to your frontend URL
+      credentials: true,  // Allow credentials (cookies, authorization headers)
+    })
+  );
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-app.use(session({
-    secret : process.env.SESSION_SECRET,
-    resave : false,
-    saveUninitialized : true
-}))
-app.use(passport.initialize())
-app.use(passport.session());
-passport.use(new GoogleStrategy({
-    clientID : Google_Client_Id,
-    clientSecret : Google_Client_Secret,
-    callbackURL : "http://localhost:5000/auth/google/callback"
-},(accessToken,refreshToken,profile,done)=>{
-    return done(null,profile);
-}));
-
-passport.serializeUser((user,done)=>{
-    done(null,user);
-})
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-  });
-
-app.get("/auth/google",passport.authenticate('google',{
-    scope : ['https://www.googleapis.com/auth/plus.login']
-}))
-app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/' }),
-    (req, res) => {
-      res.redirect('http://localhost:5173/dashboard');
+// Google Authentication using Token Verification
+app.post("/auth/google", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.CLIENT_ID,
     });
-app.listen(3000,()=>{
-    console.log("Server started")
-})
+
+    const payload = ticket.getPayload();
+    req.session.user = payload; // Store user in session
+
+    res.json({ user: payload });
+  } catch (error) {
+    console.error("Google authentication error:", error);
+    res.status(401).json({ error: "Invalid token" });
+  }
+});
+
+// Get Logged-in User
+app.get("/auth/user", (req, res) => {
+  res.json(req.session.user || null);
+});
+
+// Logout
+app.get("/auth/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect(CLIENT_URL);
+  });
+});
+
+// Start Server
+app.listen(5000, () => {
+  console.log("Server started on port 5000");
+});
