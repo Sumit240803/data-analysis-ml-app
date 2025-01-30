@@ -35,3 +35,12 @@
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
+.card li{
+    list-style: none;
+    padding: 5px;
+    font-size: larger;
+}
+.card h2{
+    padding-bottom: 5px;
+    
+}

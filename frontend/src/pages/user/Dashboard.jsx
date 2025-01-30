@@ -41,7 +41,29 @@ const Dashboard = () => {
         <p>Your overall progress of created environments.</p>
       </Link>
 </main>
-
+    <h1 style={{"textAlign" : "center"}}>Some Userful insights</h1>
+<section className='main'>
+    <div className='card'>
+        <h2>What are Enviornments</h2>
+        <ul>
+            <li>A spearate area for your projects</li>
+            <li>You can handle multiple projects easily</li>
+            <li>Share your environment to your friends</li>
+        </ul>
+    </div>
+    <div className='card'>
+        <h2>All In One Solution</h2>
+        <ul>
+            <li>Data Cleaning</li>
+            <li>Data Pre processing</li>
+            <li>Multiple Model Creation</li>
+        </ul>
+    </div>
+</section>
+<h1>Helpful Links</h1>
+<section>
+<div>Blogs</div>
+</section>
     </div>
   )
 }
