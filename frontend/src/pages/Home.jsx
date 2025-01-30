@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/ui/general/Navbar'
 import Footer from '../components/ui/general/Footer'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -65,7 +66,8 @@ const Home = () => {
 <div className='hero end-section'>
 <div className='heading end-heading'>
 <h1>Start Your Analysis Now</h1>
-<button className='getStarted'>Get Started</button>
+
+<button className='getStarted'><Link style={{"textDecoration" : "none" , "color" : "white"}} to={"/login"} >Get Started</Link> </button>
 </div>
 </div>
 <Footer/>

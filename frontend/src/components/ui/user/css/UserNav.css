@@ -1,0 +1,26 @@
+.user-nav{
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.903);
+    color: white;
+    display: flex;
+    align-items: center;
+    
+    justify-content: space-between;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profile-image{
+    width: 60px;
+    border-radius: 30px;
+}
+.user-name{
+    font-size: large;
+}
+.user-options{
+    display: flex;
+    gap: 20px;
+   
+}
