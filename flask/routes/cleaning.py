@@ -3,25 +3,12 @@ import pandas as pd
 import os
 cleaning_blueprint= Blueprint("cleaning",__name__)
 import requests
-def getToken():
-    header = request.headers.get("Authorization")
-    if header : 
-        parts = header.split(" ")
-        if(len(parts)==2 and parts[0]=="Bearer"):
-            return parts[1]
-        else:
-            return None
-    else:
-        return None
 @cleaning_blueprint.route("/upload-csv",methods=["POST"])
 def upload():
     if 'file' not in request.files:
         return jsonify({"error": "No file part in the request"}), 400
     
     file = request.files['file']
-    token = getToken()
-    if(token==None):
-        return jsonify({"error": "Authorization token is missing or invalid"}), 401
     if file.filename == '':
         return jsonify({"error": "No file selected"}), 400
 
@@ -33,8 +20,6 @@ def upload():
         file.save(file_path)
         response = requests.post("http://127.0.0.1:3000/api/user/save-file",json={
             "filesname" : file.filename
-        },headers={
-           # "Authorization" : f"Bearer {token}"
         })
         return jsonify({"message": "File uploaded and saved successfully", "file_path": file_path}), 200
 

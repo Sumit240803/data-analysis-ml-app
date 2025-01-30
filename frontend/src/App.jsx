@@ -6,6 +6,7 @@ import Navbar from './components/ui/general/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Dashboard from './pages/user/Dashboard'
+import Create from './pages/user/Create'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/create-environment' element={<Create/>}/>
       </Routes>
     
     </>

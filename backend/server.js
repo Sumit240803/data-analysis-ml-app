@@ -3,7 +3,8 @@ const cors = require("cors");
 const session = require("express-session");
 require("dotenv").config();
 const { OAuth2Client } = require("google-auth-library");
-
+const mongoose = require("mongoose");
+const User = require("./model/User");
 const app = express();
 const CLIENT_URL = "http://localhost:5173";
 const client = new OAuth2Client(process.env.CLIENT_ID);
@@ -34,6 +35,18 @@ app.post("/auth/google", async (req, res) => {
     });
 
     const payload = ticket.getPayload();
+    const { sub, name, email, picture } = payload;
+    let user = await User.findOne({googleId : sub});
+    if(!user){
+      user = new User({
+        googleId : sub,
+        name : name,
+        email : email,
+        picture : picture
+      });
+      await user.save();
+    }
+
     req.session.user = payload; // Store user in session
 
     res.json({ user: payload });
@@ -60,6 +73,7 @@ app.get("/auth/logout", (req, res) => {
   });
 });
 
+mongoose.connect(process.env.DB).then(()=>console.log("DB connected")).catch(err=>console.log(err))
 // Start Server
 app.listen(5000, () => {
   console.log("Server started on port 5000");
