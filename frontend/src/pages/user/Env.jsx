@@ -66,6 +66,34 @@ const Env = () => {
       ) : (
         <p>Loading environment data...</p>
       )}
+      <div className='services'>
+        <div className='service-1'>
+            <h2>Data Cleaning</h2>
+            <p>Includes</p>
+            <ul>
+                <li>Handling Null Values</li>
+                <li>Dropping Columns</li>
+                <li>Handling Outliers</li>
+            </ul>
+        </div>
+        <div className='service-2'>
+            <h2>Data Processing</h2>
+            <p>Includes</p>
+            <ul>
+                <li>Data Normalization</li>
+                <li>Data Fitting - Min-Max Scaling and Feature Scaling</li>
+            </ul>
+        </div>
+        <div className='service-3'>
+            <h2>Data Visualisation</h2>
+            <p>Include</p>
+            <ul>
+                <li>Charts - Line Chart and Pie Chart</li>
+                <li>Scatter Plot</li>
+                <li>Box Plot</li>
+            </ul>
+        </div>
+      </div>
     </div>
   );
 };
