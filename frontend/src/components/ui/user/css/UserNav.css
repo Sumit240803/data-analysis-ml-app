@@ -1,10 +1,10 @@
 .user-nav{
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.903);
-    color: white;
+    background-color: #000333;
+    color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
-    
+    border-bottom: 1px solid white;
     justify-content: space-between;
 }
 .user-info{

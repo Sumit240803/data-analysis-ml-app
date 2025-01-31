@@ -115,10 +115,12 @@ const Dashboard = () => {
           <p>You can see your created environments here.</p>
           <div className='env-container'>
             {env.length>0 && env.map((envs)=>(
+              <Link className='env-link' to={`/env/id/${envs._id}`}>
               <div className='env-card' key={envs._id}>
                 <div className='env-name'>{envs.name}</div>
                 <div className='env-desc'>{envs.description}</div>
               </div>
+              </Link>
             ))}
           </div>
         </div>

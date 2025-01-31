@@ -80,4 +80,27 @@ userRouter.post("/create-env" , async(req,res)=>{
     res.status(500).json({ message: "Internal Server Error" });
   }
 })
+
+userRouter.post("/env-id", async (req, res) => {
+  try {
+    const user = req.session.user;
+
+    if (!user) {
+      return res.status(401).json({ message: "User is not authenticated" });
+    }
+
+    const { envId } = req.body;
+
+    const env = await Env.findById(envId);
+    if (!env) {
+      return res.status(404).json({ "Message": "Env not found" }); // Add return here
+    }
+
+    return res.status(200).json({ env });
+  } catch (error) {
+    console.error(error);  // Log error for better debugging
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 module.exports = userRouter;
