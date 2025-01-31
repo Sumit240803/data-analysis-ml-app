@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const [env , setEnv] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     file: null,
@@ -25,35 +26,41 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser();
+    getEnv();
   }, []);
 
   const handleFormChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === 'file') {
-      setFormData({
-        ...formData,
-        [name]: files[0],
-      });
-    } else {
+    const { name, value} = e.target;
       setFormData({
         ...formData,
         [name]: value,
       });
-    }
   };
-
+  const getEnv = async()=>{
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/api/user/env`,{
+        withCredentials : true
+      });
+      setEnv(response.data.env);
+      console.log(response.data.env)
+    } catch (error) {
+      
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formDataToSend = new FormData();
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('file', formData.file);
-    formDataToSend.append('description', formData.description);
-
+    
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND}/create-environment`,
-        formDataToSend,
-        { withCredentials: true }
+        `${import.meta.env.VITE_BACKEND}/api/user/create-env`,
+        {
+          name: formData.name,
+          description: formData.description,
+        },
+        { 
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" } 
+        }
       );
       console.log('Environment Created', response.data);
     } catch (error) {
@@ -106,6 +113,14 @@ const Dashboard = () => {
         <div className="card">
           <h1>View Environment</h1>
           <p>You can see your created environments here.</p>
+          <div className='env-container'>
+            {env.length>0 && env.map((envs)=>(
+              <div className='env-card' key={envs._id}>
+                <div className='env-name'>{envs.name}</div>
+                <div className='env-desc'>{envs.description}</div>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="card">
           <h1>Check Your Progress</h1>

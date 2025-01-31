@@ -5,12 +5,14 @@ require("dotenv").config();
 const { OAuth2Client } = require("google-auth-library");
 const mongoose = require("mongoose");
 const User = require("./model/User");
+const userRouter = require("./routes/userRoutes");
 const app = express();
 const CLIENT_URL = "http://localhost:5173";
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({extended : true}))
 app.use(
     cors({
       origin: CLIENT_URL,
@@ -24,7 +26,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-
+app.use("/api/user",userRouter)
 // Google Authentication using Token Verification
 app.post("/auth/google", async (req, res) => {
   const { token } = req.body;

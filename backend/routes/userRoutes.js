@@ -1,9 +1,9 @@
 const express = require("express");
 const User = require("../model/User");
 const verifyJWT = require("../utils/verifyJwt");
-
-const router = express.Router();
-router.post("/save-file", verifyJWT, async (req, res) => {
+const Env = require("../model/Enviornments")
+const userRouter = express.Router();
+userRouter.post("/save-file", verifyJWT, async (req, res) => {
     try {
         const filesname = req.body.filesname;  
         const username = req.user.username;   
@@ -30,7 +30,7 @@ router.post("/save-file", verifyJWT, async (req, res) => {
     }
 });
 
-router.get("/env", async (req, res) => {
+userRouter.get("/env", async (req, res) => {
     try {
       const user = req.session.user;
   
@@ -55,4 +55,29 @@ router.get("/env", async (req, res) => {
     }
   });
   
-module.exports = router;
+userRouter.post("/create-env" , async(req,res)=>{
+  try {
+    const user = req.session.user;
+    
+      if (!user) {
+        return res.status(401).json({ message: "User is not authenticated" });
+      }
+  
+      const id = user.sub;
+      const existingUser = await User.findOne({ googleId: id });
+      const { name, description } = req.body;
+      console.log(req.body);
+      if (!name || !description) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      const env = new Env({name:name,description:description});
+      await env.save();
+      existingUser.enviornments.push(env._id)
+      await existingUser.save();
+      res.status(201).json({ message: "Environment Created", env: env });
+  } catch (error) {
+    console.error("Error creating environment:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+})
+module.exports = userRouter;
