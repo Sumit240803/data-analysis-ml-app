@@ -30,5 +30,29 @@ router.post("/save-file", verifyJWT, async (req, res) => {
     }
 });
 
-
+router.get("/env", async (req, res) => {
+    try {
+      const user = req.session.user;
+  
+      if (!user) {
+        return res.status(401).json({ message: "User is not authenticated" });
+      }
+  
+      const id = user.sub;
+      const existingUser = await User.findOne({ googleId: id }).populate(
+        "enviornments",
+        "name description"
+      );
+  
+      if (existingUser) {
+        res.status(200).json({ env: existingUser.enviornments });
+      } else {
+        res.status(404).json({ message: "User not found or no environments" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+  
 module.exports = router;

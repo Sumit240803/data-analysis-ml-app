@@ -15,7 +15,7 @@ const Login = () => {
             }, { withCredentials: true });
 
             console.log("User data:", res.data);
-            navigate("/");  // Redirect after login
+            navigate("/dashboard"); 
         } catch (error) {
             console.error("Login Failed", error);
         }

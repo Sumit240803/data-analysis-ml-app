@@ -70,6 +70,7 @@ const Dashboard = () => {
       <div>
         <UserNav user={user} />
       </div>
+      <h1 className='dash'>DASHBOARD</h1>
       <main className="main">
         <div className="card">
           <h1>Create Your Environment</h1>
@@ -93,6 +94,7 @@ const Dashboard = () => {
               <textarea
                 id="description"
                 name="description"
+                placeholder='Enter a short description for your enviornment'
                 value={formData.description}
                 onChange={handleFormChange}
                 required
